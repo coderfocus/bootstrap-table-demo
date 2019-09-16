@@ -1,11 +1,13 @@
 package com.coderfocus.bootstraptabledemo.mapper;
 
+import com.coderfocus.bootstraptabledemo.dto.Page;
 import com.coderfocus.bootstraptabledemo.entity.Item;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Collection;
 import java.util.List;
 
 @Mapper
 public interface ItemMapper {
-    List<Item> pageQuery();
+    Page<Item> pageQuery(Page page);
 }

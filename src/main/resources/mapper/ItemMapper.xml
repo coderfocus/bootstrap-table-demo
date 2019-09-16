@@ -8,8 +8,22 @@
         <result property="itemPrice" column="item_price"/>
     </resultMap>
 
-    <select id="pageQuery" resultMap="itemMap">
-      select * from items;
+    <resultMap id="longMap" type="Long"/>
+
+
+    <resultMap id="pageMap" type="com.coderfocus.bootstraptabledemo.dto.Page">
+        <result property="total" column="total"/>
+        <collection property="data" resultSet="data" ofType="com.coderfocus.bootstraptabledemo.entity.Item">
+            <id property="id" column="id"/>
+            <result property="itemName" column="item_name"/>
+            <result property="itemPrice" column="item_price"/>
+        </collection>
+    </resultMap>
+
+    <select id="pageQuery" resultSets="total,data" resultMap="pageMap"
+            parameterType="com.coderfocus.bootstraptabledemo.dto.Page">
+        SELECT count(*) as total from items;
+        SELECT * FROM items ORDER BY item_price limit #{offset},#{limit};
     </select>
 
 
