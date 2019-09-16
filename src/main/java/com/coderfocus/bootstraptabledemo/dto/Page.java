@@ -1,5 +1,6 @@
 package com.coderfocus.bootstraptabledemo.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Page<T> {
@@ -38,5 +39,9 @@ public class Page<T> {
 
     public void setData(List<T> data) {
         this.data = data;
+    }
+
+    public Page(){
+        this.setData(new ArrayList<>());
     }
 }

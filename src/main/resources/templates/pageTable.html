@@ -12,23 +12,41 @@
 </head>
 <body>
 <div class="container">
-    <table    id="table"
-              data-toggle="table"
-              data-height="460"
-              data-pagination="true"
-              data-side-pagination="server"
-              data-query-params="queryParams"
-              data-url="/item/page"
-              data-total-field="total"
-              data-data-field="data">
-        <thead>
-        <tr>
-            <th data-field="id">ID</th>
-            <th data-field="itemName">Item Name</th>
-            <th data-field="itemPrice">Item Price</th>
-        </tr>
-        </thead>
-    </table>
+    <br>
+    <form>
+        <div class="form-group row">
+            <label for="price" class="col-sm-1 col-form-label">ItemPrice</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="price" placeholder="ItemPrice">
+           </div>
+            <div class="col-sm-2">
+                <button type="button" id="search" class="btn btn-primary mb-2"> 查询 </button>
+            </div>
+        </div>
+    </form>
+    <div class="row"/>
+        <div class="col">
+
+        <table id="table"
+               data-toggle="table"
+               data-height="460"
+               data-pagination="true"
+               data-side-pagination="server"
+               data-query-params="queryParams"
+               data-url="/item/page"
+               data-total-field="total"
+               data-data-field="data"
+        >
+            <thead>
+            <tr>
+                <th data-field="id">ID</th>
+                <th data-field="itemName">Item Name</th>
+                <th data-field="itemPrice">Item Price</th>
+            </tr>
+            </thead>
+        </table>
+        </div>
+    </div>
 </div>
 
 
@@ -38,8 +56,24 @@
 <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
 <script>
     function queryParams(params) {
-        return params
+        var price = $('#price').val();
+        console.log(price);
+        var param ={
+            offset : price!=''?0: params.offset,
+            limit: params.limit,
+            price: price
+        };
+        return param;
     }
+
+    var $table = $('#table')
+    var $search = $('#search')
+
+    $(function() {
+        $search.click(function () {
+            $table.bootstrapTable('refresh')
+        })
+    })
 </script>
 </body>
 </html>

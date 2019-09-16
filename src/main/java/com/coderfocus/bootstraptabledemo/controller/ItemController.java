@@ -19,11 +19,10 @@ public class ItemController {
 
     @ResponseBody
     @GetMapping("/page")
-    public Page<Item> pageQuery(@RequestParam(defaultValue = "0") Integer offset, @RequestParam(defaultValue = "10")Integer limit){
-        Page page = new Page();
-        page.setOffset(offset);
-        page.setLimit(limit);
-        return itemService.pageQuery(page);
+    public Page<Item> pageQuery(@RequestParam(defaultValue = "0") Integer offset,
+                                @RequestParam(defaultValue = "10")Integer limit,
+                                Double price){
+        return itemService.pageQuery(offset, limit, price);
     }
 
     @GetMapping("/pageTable")

@@ -7,5 +7,5 @@ import java.util.Collection;
 import java.util.List;
 
 public interface ItemService {
-    Page<Item> pageQuery(Page page);
+    Page<Item> pageQuery(Integer offset, Integer limit, Double price);
 }

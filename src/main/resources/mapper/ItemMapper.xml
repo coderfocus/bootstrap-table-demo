@@ -20,10 +20,21 @@
         </collection>
     </resultMap>
 
-    <select id="pageQuery" resultSets="total,data" resultMap="pageMap"
-            parameterType="com.coderfocus.bootstraptabledemo.dto.Page">
-        SELECT count(*) as total from items;
-        SELECT * FROM items ORDER BY item_price limit #{offset},#{limit};
+    <select id="pageQuery" resultSets="total,data" resultMap="pageMap">
+        SELECT count(*) as total from items
+        <where>
+            <if test="price != null and price != ''">
+                and item_price = #{price}
+            </if>
+        </where>;
+
+        SELECT * FROM items
+         <where>
+             <if test="price != null and price != ''">
+               and item_price = #{price}
+             </if>
+         </where>
+         ORDER BY item_price limit #{offset},#{limit};
     </select>
 
 
