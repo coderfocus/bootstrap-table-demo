@@ -36,6 +36,7 @@
                data-url="/item/page"
                data-total-field="total"
                data-data-field="data"
+               data-query-params-type="limit"
         >
             <thead>
             <tr>
@@ -57,7 +58,7 @@
 <script>
     function queryParams(params) {
         var price = $('#price').val();
-        console.log(price);
+        console.log(params);
         var param ={
             offset : price!=''?0: params.offset,
             limit: params.limit,
