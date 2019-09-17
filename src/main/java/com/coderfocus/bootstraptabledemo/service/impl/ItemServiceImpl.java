@@ -21,4 +21,9 @@ public class ItemServiceImpl implements ItemService {
     public Page<Item> pageQuery(Integer offset, Integer limit, Double price) {
         return itemMapper.pageQuery(offset, limit,price);
     }
+
+    @Override
+    public Page<Item> pageQueryByPageNumber(Integer pageNumber, Integer pageSize, Double price) {
+        return itemMapper.pageQueryByPageNumber(pageNumber, pageSize,price);
+    }
 }

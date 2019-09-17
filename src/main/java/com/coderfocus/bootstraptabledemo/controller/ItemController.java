@@ -27,4 +27,16 @@ public class ItemController {
     public String page(){
         return "/pageTable";
     }
+
+    @ResponseBody
+    @GetMapping("/pageQueryByPageNumber")
+    public Page<Item> pageQueryByPageNumber(Integer pageNumber, Integer pageSize, Double price){
+        return itemService.pageQueryByPageNumber(pageNumber, pageSize, price);
+    }
+
+    @GetMapping("/jsPageTable")
+    public String jsPageTable(){
+        return "/jsPageTable";
+    }
+
 }

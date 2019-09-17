@@ -11,4 +11,6 @@ import java.util.List;
 @Mapper
 public interface ItemMapper {
     Page<Item> pageQuery(Integer offset, Integer limit, Double price);
+
+    Page<Item> pageQueryByPageNumber(Integer pageNumber,Integer pageSize,Double price);
 }

@@ -38,4 +38,21 @@
     </select>
 
 
+    <select id="pageQueryByPageNumber" resultSets="total,data" resultMap="pageMap">
+        <bind name="offset" value="(pageNumber-1)*pageSize"></bind>
+        SELECT count(*) as total from items
+        <where>
+            <if test="price != null and price != ''">
+                and item_price = #{price}
+            </if>
+        </where>;
+
+        SELECT * FROM items
+        <where>
+            <if test="price != null and price != ''">
+                and item_price = #{price}
+            </if>
+        </where>
+        ORDER BY item_price limit #{offset},#{pageSize};
+    </select>
 </mapper>
